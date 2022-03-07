@@ -8,24 +8,24 @@ app.get("/books",logger, (req, res) => {
 })
 
 app.get("/libraries",logger,checkPermission("librarian"), (req, res) => {
-    return res.send({ route: "/libraries", permission: true,role:req.role})
+    return res.send({ route: "/libraries", permission: true})
 })
 app.get("/authors",logger,checkPermission("author"), (req, res) => {
-    return res.send({ route: "/authors", permission: true,role:req.role})
+    return res.send({ route: "/authors", permission: true})
 })
 
 function logger(req,res,next){
     if(req.path == "/books")
     { 
-        req.role = "/books"
+        console.log(req.path)
     }
     else if(req.path == "/libraries")
     { 
-        req.role = "/libraries"
+        console.log(req.path)
     }
     else if(req.path == "/authors")
     { 
-        req.role = "/authors"  
+        console.log(req.path) 
     }
     next()
       
@@ -41,7 +41,7 @@ if(role == "librarian" && req.path == "/librarian" || role == "author" && req.pa
 { 
     return next()  
 }
-return res.send("notallowed")
+return res.send(req.permission = true)
 // 
   
 }
