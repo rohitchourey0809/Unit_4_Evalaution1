@@ -39,9 +39,11 @@ function checkPermission(role)
   { 
 if(role == "librarian" && req.path == "/librarian" || role == "author" && req.path == "/author")
 { 
-    return next()  
+    return res.send(req.permission = true)
+      
 }
-return res.send(req.permission = true)
+return next()
+
 // 
   
 }
